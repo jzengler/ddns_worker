@@ -1,5 +1,3 @@
-# ddns_worker
-
 Worker to update IP for dynamic DNS in cpanel.
 
 Needed configurations:
