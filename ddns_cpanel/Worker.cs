@@ -21,18 +21,20 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var uri = _configuration.GetConnectionString("cpanel");
-        var ttl_ms = _configuration.GetSection("TimeToLive").GetValue<int>("ttl_hours") * 60 * 60 * 1000;
-        _logger.LogInformation("{time}", ttl_ms);
+        string uri = _configuration.GetConnectionString("cpanel");
+        int ttl_ms = _configuration.GetSection("TimeToLive").GetValue<int>("hours") * 60 * 60 * 1000;
+
 
         while (!stoppingToken.IsCancellationRequested)
         {
 
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            await UpdateDDNSAsync(uri);
+            
+                await UpdateDDNSAsync(uri);
+            
 
-
-            await Task.Delay(ttl_ms, stoppingToken); ;
+            _logger.LogInformation("Waiting {time}ms before updating IP again", ttl_ms);
+            await Task.Delay(ttl_ms, stoppingToken);
         }
     }
 

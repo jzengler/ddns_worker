@@ -24,4 +24,8 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {667B05B3-CEED-4A8B-9DE6-A09435BAB4E1}
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.StandardHeader = $1
+	EndGlobalSection
 EndGlobal
